@@ -34,23 +34,21 @@ Pergunta: Qual é o sinal enviado por omissão com o comando `kill 1234`?
 
 ### 2 - Exemplo `intquit.c`
 
-1. GIT CLONE
-2. LER PROGRAMA:
-    - Repare em A;
-    - Repare em B;
-3. COMPILAR PROGRAMA
-4. CORRER PROGRAMA
-5. programa inicia e fica num ciclo infinido ou parado
-6. fazer CTRL-C (ou SIGINT) e observar resultado
-7. repetir passo 2
-8. enviar CTRL-\ (ou SIGQUIT) e observar resultado
+1. Clone este repositório, usando o git: `git clone https://github.com/tecnico-so/lab_ferramentas.git`
+2. Estude o programa `intquit.c`:
+    - Repare na definição da função `sigHandler()`, chamada assincronamenente para tratar o sinal quando o processo o receber;
+    - Repare nos tratamentos do SIGINT (linha 16) e SIGQUIT (linha 27);
+    - A função signal() regista a rotina de tratamento para estes sinais (linhas 37 e 39). Neste caso a mesma rotina `sigHandler()` vai ser registada para tratar dois eventos diferentes (`SIGINT` e `SIGQUI`),mas poderiam ser rotinas diferentes;
+3. Compile o programa com a ferramenta `make` (dentro da pasta `src/`).
+4. Corra o programa (`./intquit.c` ou `make run`).
+5. Observe que o programa inicia e fica num ciclo infinito ou parado.
+6. Experimente fazer CTRL-C (ou SIGINT) e observe o resultado.
+7. Repita o passo 6.
+8. Experimente fazer CTRL-\ (ou SIGQUIT) e observe o resultado.
 
-Pergunta: distinguir mensagens impressas
+### 3 - Exercício CTRL-Z
 
-### 3 - Exercício `intquitstop.c`
-
-1. copiar intquit.c e adicionar intquitstop.c à Makefile
-2. tratar sinal SIGSTP (ou CTRL-Z)
-3. compilar e testar
+1. Adicione o tratamento do sinal SIGSTP (ou CTRL-Z) numa nova função `stopHandler()`.
+2. Compile e teste
 
 Contactos para sugestões/correções: [LEIC-Alameda](mailto:leic-so-alameda@disciplinas.tecnico.ulisboa.pt), [LEIC-Tagus](mailto:leic-so-tagus@disciplinas.tecnico.ulisboa.pt), [LETI](mailto:leti-so-tagus@disciplinas.tecnico.ulisboa.pt)

@@ -13,6 +13,9 @@ all: $(TARGETS)
 
 intquit: intquit.o
 
+run:
+	./intquit
+
 fmt: $(SOURCES)
 	clang-format -i $^
 

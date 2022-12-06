@@ -2,9 +2,6 @@
 
    Catch the SIGINT and SIGQUIT signals, which are normally generated
    by the control-C (^C) and control-\ (^\) keys respectively.
-
-   Note that although we use signal() to establish signal handlers in this
-   program, the use of sigaction() is always preferable for this task.
 */
 #include <signal.h>
 #include <stdio.h>
@@ -14,10 +11,14 @@
 static void sigHandler(int sig) {
     static int count = 0;
 
-    /* UNSAFE: This handler uses non-async-signal-safe functions
-       (printf(), exit(); see Section 21.1.2) */
+    /* UNSAFE: This handler uses non-async-signal-safe functions (printf(), exit();) */
 
     if (sig == SIGINT) {
+        /* In some systems, after the handler call the signal gets reverted
+           to SIG_DFL (the default action associated with the signal).
+           So we set the signal handler back to our function after each trap. */
+        if (signal(SIGINT, sigHandler) == SIG_ERR)
+            exit(EXIT_FAILURE);
         count++;
         printf("Caught SIGINT (%d)\n", count);
         return;                 /* Resume execution at point of interruption */
@@ -30,10 +31,8 @@ static void sigHandler(int sig) {
 }
 
 int main(int argc, char *argv[]) {
-    /* Establish same handler for SIGINT and SIGQUIT. Here we use the
-       simpler signal() API to establish a signal handler, but for the
-       reasons described in Section 22.7 of TLPI, sigaction() is the
-       (strongly) preferred API for this task. */
+    /* Establish same handler for SIGINT and SIGQUIT.
+       Here we use the simple signal() API to establish a signal handler. */
 
     if (signal(SIGINT, sigHandler) == SIG_ERR)
         exit(EXIT_FAILURE);
