@@ -6,9 +6,8 @@
 
 No final deste guião, deverá ser capaz de:
 
-- explicar o que é um Signal e como se usa para controlar processos do sistema operativo; (?)
-- programar o tratamento de sinais assíncronos. (?)
-- usar os Jobs para a gestão de vários programas numa mesma sessão de shell. (?)
+- Explicar o que é um Signal e como se usa para controlar processos do sistema operativo;
+- Programar o tratamento de sinais assíncronos;
 
 ## Introdução
 
