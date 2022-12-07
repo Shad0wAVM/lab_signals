@@ -16,8 +16,7 @@ O sistema operativo interrompe o fluxo normal de execução do processo para est
 O tratamento de um sinal está predefinido, mas pode ser criada uma rotina para tratar este sinal como vamos ver a seguir.
 
 Qualquer chamada a uma função durante a rotina de tratamento do sinal deverá ser segura (AS-Safe ou Async-Signal-Safe).
-Por exemplo, a função `printf` mantém dados alocados, como ponteiros e indíces para efetuar *buffered I/O*. Se durante a execução o programa for interrompido por um sinal durante uma chamada à função `printf`, uma chamada à função `printf` durante a rotina de tratamento resultará em comportamento indefinido.
-[^footnote-man]: Source: `man signal-safety`
+Por exemplo, a função `printf` mantém dados alocados, como ponteiros e indíces para efetuar *buffered I/O*. Se durante a execução o programa for interrompido por um sinal durante uma chamada à função `printf`, uma chamada à função `printf` durante a rotina de tratamento resultará em comportamento indefinido[^footnote-man].
 
 ### 1 - Comando `kill`
 
@@ -55,3 +54,5 @@ Pergunta: Qual é o sinal enviado por omissão com o comando `kill 1234`?
 2. Compile e teste
 
 Contactos para sugestões/correções: [LEIC-Alameda](mailto:leic-so-alameda@disciplinas.tecnico.ulisboa.pt), [LEIC-Tagus](mailto:leic-so-tagus@disciplinas.tecnico.ulisboa.pt), [LETI](mailto:leti-so-tagus@disciplinas.tecnico.ulisboa.pt)
+
+[^footnote-man]: Source: `man signal-safety`
