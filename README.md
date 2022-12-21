@@ -1,8 +1,8 @@
-# Guião 8: Signals
+# Guião sobre _signals_
 
 ![IST](img/IST_DEI.png)  
 
-## Objectivos
+## Objetivos
 
 No final deste guião, deverá ser capaz de:
 
@@ -18,7 +18,7 @@ O tratamento de um sinal está predefinido, mas pode ser criada uma rotina para 
 Qualquer chamada a uma função durante a rotina de tratamento do sinal deverá ser segura (AS-Safe ou Async-Signal-Safe).
 Por exemplo, a função `printf` mantém dados alocados, como ponteiros e indíces para efetuar *buffered I/O*. Se durante a execução o programa for interrompido por um sinal durante uma chamada à função `printf`, uma chamada à função `printf` durante a rotina de tratamento resultará em comportamento indefinido[^footnote-man].
 
-### 1 - Comando `kill`
+### 1. Comando `kill`
 
 O envio de sinais pode ser feito com o comando `kill`.
 ```sh
@@ -34,7 +34,7 @@ Observe os processos ativos com `ps` (ou `top` ou `pgrep`).
 Pergunta: Qual é o sinal enviado por omissão com o comando `kill 1234`?
 (Sugestão: consulte a página no manual `man kill`)
 
-### 2 - Exemplo `intquit.c`
+### 2. Exemplo `intquit.c`
 
 1. Clone este repositório, usando o git: `git clone https://github.com/tecnico-so/lab_signals.git`
 2. Estude o programa `intquit.c`:
@@ -48,10 +48,12 @@ Pergunta: Qual é o sinal enviado por omissão com o comando `kill 1234`?
 7. Repita o passo 6.
 8. Experimente fazer CTRL-\ (ou SIGQUIT) e observe o resultado.
 
-### 3 - Exercício CTRL-Z
+### 3. Exercício CTRL-Z
 
 1. Adicione o tratamento do sinal SIGSTP (ou CTRL-Z) numa nova função `stop_handler()`.
 2. Compile e teste
+
+---
 
 Contactos para sugestões/correções: [LEIC-Alameda](mailto:leic-so-alameda@disciplinas.tecnico.ulisboa.pt), [LEIC-Tagus](mailto:leic-so-tagus@disciplinas.tecnico.ulisboa.pt), [LETI](mailto:leti-so-tagus@disciplinas.tecnico.ulisboa.pt)
 
