@@ -60,10 +60,16 @@ Caso um programa não responda ao sinal de terminação ordeira (`SIGTERM`), pod
 7. Repita o passo anterior.
 8. Experimente fazer `CTRL-\` (que envia `SIGQUIT`) e observe o resultado.
 
-### 3. Exercício CTRL-Z
+### 3. Exercício SIGTERM
 
-1. Adicione o tratamento do sinal `SIGSTP` (enviado com `CTRL-Z`) numa nova função chamada `stop_handler()`.
+1. Adicione o tratamento do sinal `SIGTERM` numa nova função chamada `term_handler()`.
 2. Compile e teste.
+
+Notas: Não é possível enviar o sinal `SIGTERM` com um atalho como outros sinais. Para testar o código deveram:
+1. Parar o processo com o sinal `SIGSTOP` através do atalho `CTRL-Z`.
+2. Inspecionar o `pid` do vosso processo com o comando `ps`.
+3. Envir o sinal `SIGTERM` com o comando `kill pid`.
+4. Regressar ao vosso processo com o comando `fg`.
 
 ----
 
