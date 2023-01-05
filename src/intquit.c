@@ -32,6 +32,11 @@ static void sig_handler(int sig) {
   exit(EXIT_SUCCESS);
 }
 
+static void term_handler(int sig) {
+  fprintf(stderr, "Caught SIGTERM - that's all folks!\n");
+  exit(EXIT_SUCCESS);
+}
+
 int main(int argc, char *argv[]) {
   // Establish same handler for SIGINT and SIGQUIT.
   // Here we use the simple signal() API to establish a signal handler.
@@ -40,6 +45,9 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
   if (signal(SIGQUIT, sig_handler) == SIG_ERR) {
+    exit(EXIT_FAILURE);
+  }
+  if (signal(SIGTERM, term_handler) == SIG_ERR) {
     exit(EXIT_FAILURE);
   }
 
